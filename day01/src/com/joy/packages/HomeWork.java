@@ -13,6 +13,7 @@ public class HomeWork {
         int index = 0;
         while ((index = str.indexOf(keywords, index)) != -1) {
             if (str.indexOf(keywords, index) != -1) {
+//                index = index + keywords.length();
                 index = index + keywords.length();
                 count++;
             }
