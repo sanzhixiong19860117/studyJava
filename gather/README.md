@@ -4,7 +4,7 @@
 
 list接口的作用：他是存储不唯一，有序的对象。
 
-继承接口的两个类：ArrayList，linkdList，vector
+继承接口的三个类：ArrayList，linkdList，vector
 
 基础使用
 
