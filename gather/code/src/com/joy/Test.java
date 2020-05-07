@@ -35,18 +35,35 @@ public class Test {
 //        }
 
         //list接口的基础使用
-        List list = new ArrayList();
-        list.add("java1");
-        list.add("java2");
-        list.add("java3");
-        //遍历
-        final ListIterator iterator = list.listIterator();
-        while (iterator.hasNext()) {
-            Object obj = iterator.next();
-            System.out.println(obj);
-            if (obj.equals("java2")) {
-                iterator.remove();
-            }
-        }
+//        List list = new ArrayList();
+//        list.add("java1");
+//        list.add("java2");
+//        list.add("java3");
+//        //遍历
+//        final ListIterator iterator = list.listIterator();
+//        while (iterator.hasNext()) {
+//            Object obj = iterator.next();
+//            System.out.println(obj);
+//            if (obj.equals("java2")) {
+//                iterator.remove();
+//            }
+//        }
+
+        //set的基础操作
+//        Set set = new HashSet();
+//        //添加
+//        set.add("java1");
+//        set.add(false);
+//        set.add(1);
+//        //删除
+//        set.remove(false);
+//        System.out.println(set);
+//        //查询
+//        System.out.println(set.contains(1));
+        Set set = new TreeSet();
+        set.add("sanzhixiong");
+        set.add(1111);
+        set.add(false);
+        System.out.println(set);
     }
 }

@@ -208,6 +208,54 @@ final void checkForComodification() {
 ```
 
 ```java
-int expectedModCount = modCount;//在实现的内部类的时候是初始化一样的，如果你有删除或者添加的时候会有改变这个数值的行为所以会报错
+int expectedModCount = modCount;//在实现的内部类的时候是初始化一样的，
+//如果你有删除或者添加的时候会有改变这个数值的行为所以会报错
 ```
 
+## Set接口的实现类操作
+
+作用：存储唯一，是一个无序的对象
+
+两个继承类：HashSet，TreeSet
+
+- HashSet 采用的是HashMap的数据结构方式
+- TreeSet 采用的是红黑树的结构方式
+
+两个优缺点：
+
+HashSet
+
+- 添加，删除，查询都很快
+- 缺点：无序
+
+TreeSet
+
+- 优点：有序查询速度很快。
+- 查询速度没有HashSet快。
+
+基础使用
+
+```java
+Set set = new HashSet();
+        //添加
+        set.add("java1");
+        set.add(false);
+        set.add(1);
+        //删除
+        set.remove(false);
+        System.out.println(set);
+        //查询
+        System.out.println(set.contains(1));
+```
+
+TreeSet操作
+
+```java
+Set set = new TreeSet();
+set.add("sanzhixiong");
+set.add(1111);
+set.add(false);
+System.out.println(set);
+```
+
+会报错是因为，红黑树，会有一个自动排序的操作，所以类型必须要一致。
