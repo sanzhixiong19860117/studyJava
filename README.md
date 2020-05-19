@@ -10,7 +10,7 @@
 
 [list和set接口](https://github.com/sanzhixiong19860117/studyJava/tree/master/gather)
 
-
+[HashSet和TreeSet](https://github.com/sanzhixiong19860117/studyJava/tree/master/set)
 
 ## io流，多线程
 
