@@ -12,6 +12,8 @@
 
 [HashSet和TreeSet](https://github.com/sanzhixiong19860117/studyJava/tree/master/set)
 
+[泛型](https://github.com/sanzhixiong19860117/studyJava/tree/master/fanxing)
+
 ## io流，多线程
 
 ## 网络编程与jdk新特性
