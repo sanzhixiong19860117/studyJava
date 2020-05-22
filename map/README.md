@@ -62,4 +62,27 @@ public class Test {
 }
 ```
 
-## 
+HashMap和HashTabel的区别
+
+- HashMap线程不安全，效率比较高，HashTabel线程安全，效率低。
+- HashMap key-value 可以为null，但是HashTabel不允许为null
+
+初始化容器数量
+
+```java
+/**
+ * The default initial capacity - MUST be a power of two.
+ */
+static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
+```
+
+扩容系数
+
+```java
+/**
+ * The load factor used when none specified in constructor.
+ */
+static final float DEFAULT_LOAD_FACTOR = 0.75；
+```
+
+这个是插入某一个数量以后就需要扩容了比如16*0.75=12 这个时候到了12就需要进行扩容的操作了。
