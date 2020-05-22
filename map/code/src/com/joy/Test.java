@@ -1,26 +1,7 @@
-# Map接口学习
-
-1.为什么要使用k-v的进行操作
-
-因为k-v可以更快的进行搜索，并且k-v是一一对应的操作，查询效率高。
-
-2.map接口常用的几个类是那些
-
-- HashMap
-- LinkedMap
-- TreeMap
-
-3.数据结构层面上查看
-
-- HashMap使用哈希表进行操作（1.7以前使用的是数组和链表的形式，1.8以后，数组+链表+红黑树的形式操作）
-- LinedMap使用的是链表的形式进行存储（查询时间比较快）
-- TreeMap使用的是红黑树的方式进行存储
-
-4.基础操作
-
-```java
 package com.joy;
+
 import java.util.*;
+
 public class Test {
     public static void main(String[] args) {
         //基础api的基础使用
@@ -60,6 +41,3 @@ public class Test {
         }
     }
 }
-```
-
-## 
