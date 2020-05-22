@@ -86,3 +86,7 @@ static final float DEFAULT_LOAD_FACTOR = 0.75；
 ```
 
 这个是插入某一个数量以后就需要扩容了比如16*0.75=12 这个时候到了12就需要进行扩容的操作了。
+
+1.8以后的源码分析请查看
+
+https://blog.csdn.net/tuke_tuke/article/details/51588156
