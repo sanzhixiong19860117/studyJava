@@ -93,4 +93,4 @@ https://blog.csdn.net/tuke_tuke/article/details/51588156
 
 1.7可以查看
 
-[http://www.wachsbeere.com/2019/02/28/Java%E9%9B%86%E5%90%88%E6%BA%90%E7%A0%81%EF%BC%9AHashMap%EF%BC%88JDK%201.7%EF%BC%89/](http://www.wachsbeere.com/2019/02/28/Java集合源码：HashMap（JDK 1.7）/)
+https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/collection/HashMap.md
