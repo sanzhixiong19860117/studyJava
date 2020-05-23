@@ -141,3 +141,61 @@ try{
 - 字节流可以用于所有的读写操作（音频，视频，文本）
 - 如果是文本的话，还是使用字符流比较好一点
 
+下面是对这个说法的举例程序复制图片
+
+```java
+//复制图片之字符数组操作
+FileReader fileReader = null;
+FileWriter fileWriter = null;
+try{
+    fileReader = new FileReader("1.jpg");
+    fileWriter = new FileWriter("2.jpg");
+    int len = 0;
+    char[] chars = new char[1024];
+    while((len = fileReader.read(chars))!=-1){
+        fileWriter.write(chars);
+    }
+}
+catch (Exception e){
+    e.printStackTrace();
+}finally {
+    try
+    {
+        fileReader.close();
+        fileWriter.close();
+    }
+    catch (Exception e){
+        e.printStackTrace();
+    }
+}
+```
+
+这个时候我们看到的图片是不能打开的，因为文件是毁坏的。
+
+下面这种
+
+```java
+FileInputStream fileReader = null;
+FileOutputStream fileWriter = null;
+try{
+    fileReader = new FileInputStream("1.jpg");
+    fileWriter = new FileOutputStream("2.jpg");
+    int len = 0;
+    byte[] chars = new byte[1024];
+    while((len = fileReader.read(chars))!=-1){
+        fileWriter.write(chars);
+    }
+}
+catch (Exception e){
+    e.printStackTrace();
+}finally {
+    try
+    {
+        fileReader.close();
+        fileWriter.close();
+    }
+    catch (Exception e){
+        e.printStackTrace();
+    }
+}
+```
