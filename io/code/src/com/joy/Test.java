@@ -33,5 +33,22 @@ public class Test {
 //            }
 //
 //        }
+
+        File file = new File("222.txt");
+        Writer writer = null;
+        try{
+            writer = new FileWriter(file);
+            writer.write("三只熊你是谁");
+            writer.write("我就是我啊");
+            writer.flush();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            try{
+                //writer.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
     }
 }

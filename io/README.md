@@ -110,3 +110,34 @@ FileReader和FileInputStream的比较
 
 - 一个读取的是字符数组，一个是byte数组
 - 对于中文的支持，字符数组要强于byte数组
+
+FileWriter 写入数据
+
+```java
+File file = new File("222.txt");
+Writer writer = null;
+try{
+    writer = new FileWriter(file);
+    writer.write("三只熊你是谁");
+    writer.write("我就是我啊");
+  	writer.flush();
+}catch (Exception e){
+    e.printStackTrace();
+}finally {
+    try{
+        writer.close();
+    }catch (Exception e){
+        e.printStackTrace();
+    }
+}
+```
+
+去掉close方法会有问题，有可能数据没有写入到对应的文件下面，然后使用 writer.flush();防止数据没有写入。
+
+凡事在写入的时候一定要记得使用一个flush()方法让数据进入到缓冲区。
+
+## 字节流和字符流的作用
+
+- 字节流可以用于所有的读写操作（音频，视频，文本）
+- 如果是文本的话，还是使用字符流比较好一点
+
