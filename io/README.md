@@ -39,7 +39,7 @@ public class Test {
 
 
 
-## 基础之InputStream
+## 基础之FileInputStream
 
 读取操作
 
@@ -80,3 +80,33 @@ public class Test {
     }
 }
 ```
+
+## FileReader 读取的方法
+
+```java
+Reader reader = null;
+try{
+    reader = new FileReader("111.txt");
+  //一个是字符数组，一个是二进制数组
+    char[] chars = new char[1024];
+    int len = 0;
+    while((len = reader.read(chars)) != -1){
+        System.out.println(new String(chars,0,len));
+    }
+}catch (Exception e){
+    e.printStackTrace();
+}
+finally {
+    try{
+        reader.close();
+    }
+    catch (Exception e){
+        e.printStackTrace();
+    }
+}
+```
+
+FileReader和FileInputStream的比较
+
+- 一个读取的是字符数组，一个是byte数组
+- 对于中文的支持，字符数组要强于byte数组
