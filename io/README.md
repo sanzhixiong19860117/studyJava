@@ -250,3 +250,153 @@ public class ByteArrayStreamDemo {
 }
 ```
 
+
+
+BufferedOutputStream和bufferedInputStream
+
+```java
+package com.stream;
+
+import java.io.*;
+
+/**
+ * @author joy
+ * @date 2020/5/24
+ */
+public class BufDemo {
+    public static void main(String[] args) throws IOException {
+
+        File file = new File("3.txt");
+        OutputStream outputStream = null;
+        InputStream inputStream = null;
+        BufferedOutputStream bufferedOutputStream = null;
+        BufferedInputStream bufferedInputStream = null;
+
+        try {
+            outputStream = new FileOutputStream(file);
+            inputStream = new FileInputStream(file);
+            bufferedOutputStream = new BufferedOutputStream(outputStream);
+            bufferedInputStream = new BufferedInputStream(inputStream);
+            bufferedOutputStream.write(1);
+            bufferedOutputStream.write("sanzhixiong".getBytes());
+            bufferedOutputStream.write("三只熊".getBytes());
+            bufferedOutputStream.flush();
+
+            //读取
+            int read = bufferedInputStream.read();
+            while((read = bufferedInputStream.read())!= -1){
+                System.out.println((char)read);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        finally {
+            outputStream.close();
+            bufferedOutputStream.close();
+          	bufferedInputStream.close();
+        }
+    }
+}
+```
+
+DataOutputStream,DataInputStream基础使用
+
+```java
+package com.stream;
+
+import java.io.*;
+
+/**
+ * @author joy
+ * @date 2020/5/24
+ */
+public class DataStreamDemo {
+    public static void main(String[] args) throws IOException {
+
+        File file = new File("444.txt");
+        OutputStream outputStream = null;
+        DataOutputStream dataOutputStream = null;
+        DataInputStream dataInputStream = null;
+        InputStream inputStream = null;
+        try {
+            outputStream = new FileOutputStream(file);
+            dataOutputStream = new DataOutputStream(outputStream);
+            inputStream = new FileInputStream(file);
+            dataInputStream = new DataInputStream(inputStream);
+            try {
+                dataOutputStream.writeInt(90);
+                dataOutputStream.write("三只熊".getBytes());
+                dataOutputStream.writeBoolean(false);
+                dataOutputStream.flush();
+
+                int id = dataInputStream.readInt();
+                int read = dataInputStream.read();
+                boolean b = dataInputStream.readBoolean();
+                System.out.println("id = "+id+"read="+read + "b="+b);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            outputStream.close();
+            dataOutputStream.close();
+            inputStream.close();
+            dataInputStream.close();
+        }
+    }
+}
+```
+
+注意：读取和写入顺序要一模一样（类型也要一模一样）
+
+核心之一：ObjectOutputStream基础使用
+
+```java
+package com.stream;
+
+import java.io.*;
+
+/**
+ * @author joy
+ * @date 2020/5/24
+ */
+public class ObjectStreamDemo {
+    public static void main(String[] args) throws IOException {
+
+        File file = new File("555.txt");
+        ObjectOutputStream objectOutputStream = null;
+        OutputStream outputStream = null;
+        InputStream inputStream = null;
+        ObjectInputStream objectInputStream = null;
+        try {
+            outputStream = new FileOutputStream(file);
+            objectOutputStream = new ObjectOutputStream(outputStream);
+            objectOutputStream.writeInt(111);
+            objectOutputStream.writeBoolean(true);
+            objectOutputStream.writeObject(new Person(1,"sanzhixiong"));
+            objectOutputStream.flush();
+
+            //读取
+            inputStream = new FileInputStream(file);
+            objectInputStream = new ObjectInputStream(inputStream);
+            int id = objectInputStream.readInt();
+            boolean b = objectInputStream.readBoolean();
+            Person p = (Person)objectInputStream.readObject();
+            System.out.println("id="+id+"b="+b+"paerson="+p);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        finally {
+            outputStream.close();
+            objectOutputStream.close();
+            inputStream.close();
+            objectInputStream.close();
+        }
+    }
+}
+```
+
+详细的请可以查看
+
+https://blog.csdn.net/dreamtdp/article/details/15378329
