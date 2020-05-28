@@ -39,3 +39,35 @@ public class ThreadDemo1 extends Thread{
 2. 要重写run这个方法
 3. 关键：就是要使用star（）方法启动线程的操作
 
+## 第二种方法实现Runnable实现方式
+
+```java
+package com.joy.demo;
+
+public class RunnableDemo implements Runnable {
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            System.out.println(Thread.currentThread().getName() + i);
+        }
+    }
+
+    public static void main(String[] args) {
+        RunnableDemo runnableDemo = new RunnableDemo();
+        Thread thread = new Thread(runnableDemo);
+        thread.start();
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println(Thread.currentThread().getName() + i);
+        }
+    }
+}
+```
+
+基础点：
+
+1. 使用Runnable接口进行继承
+2. 同样重写run的方法
+3. 创建继承Runnable的类
+4. 创建Thread来装入Runnable子对象，然后在进行star方法开启线程。
