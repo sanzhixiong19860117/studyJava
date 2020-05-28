@@ -71,3 +71,75 @@ public class RunnableDemo implements Runnable {
 2. 同样重写run的方法
 3. 创建继承Runnable的类
 4. 创建Thread来装入Runnable子对象，然后在进行star方法开启线程。
+
+推荐使用第二种方式
+
+## 买票操作
+
+使用thread来实现
+
+```java
+package com.joy.demo;
+public class TickerDemo1 extends Thread{
+    private int ticker = 5;
+    @Override
+    public void run() {
+        super.run();
+        for (int i = 0; i < 10; i++) {
+            if(ticker>0){
+                System.out.println("还剩"+(ticker--)+"张");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        //使用thred方式
+        System.out.println("hello");
+        TickerDemo1 t1 = new TickerDemo1();
+        TickerDemo1 t2 = new TickerDemo1();
+        TickerDemo1 t3 = new TickerDemo1();
+        TickerDemo1 t4 = new TickerDemo1();
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+    }
+}
+```
+
+共享数据错乱
+
+```java
+package com.joy.demo;
+
+public class RunnableTicker implements Runnable {
+    private int ticker = 5;
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            if(ticker>0){
+                System.out.println("还剩"+(ticker--)+"张");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        RunnableTicker r1 = new RunnableTicker();
+        Thread t1 = new Thread(r1);
+        Thread t2 = new Thread(r1);
+        Thread t3 = new Thread(r1);
+        Thread t4 = new Thread(r1);
+        Thread t5 = new Thread(r1);
+
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+        t5.start();
+    }
+}
+```
+
+使用Runnable接口实现可以少创建很多的对象，但是还是会有数据问题。
+
