@@ -24,7 +24,7 @@
 
 [标准输入输出(例子的使用)](https://github.com/sanzhixiong19860117/studyJava/tree/master/io1)
 
-线程的实现方式
+[线程的实现方式](https://github.com/sanzhixiong19860117/studyJava/tree/master/Thread/1)
 
 线程的生命周期，线程同步和死锁
 
