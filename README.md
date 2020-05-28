@@ -22,6 +22,6 @@
 
 [io](https://github.com/sanzhixiong19860117/studyJava/tree/master/io)
 
-标准输入输出(例子的使用)
+[标准输入输出(例子的使用)](https://github.com/sanzhixiong19860117/studyJava/tree/master/io1)
 
 ## 网络编程与jdk新特性
