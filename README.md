@@ -24,4 +24,10 @@
 
 [标准输入输出(例子的使用)](https://github.com/sanzhixiong19860117/studyJava/tree/master/io1)
 
+线程的实现方式
+
+线程的生命周期，线程同步和死锁
+
+生产消费者模型，线程池
+
 ## 网络编程与jdk新特性
