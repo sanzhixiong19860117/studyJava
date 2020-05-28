@@ -143,3 +143,9 @@ public class RunnableTicker implements Runnable {
 
 使用Runnable接口实现可以少创建很多的对象，但是还是会有数据问题。
 
+上机题用上述两种方式实现1+100
+
+
+
+
+
