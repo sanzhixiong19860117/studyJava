@@ -449,4 +449,7 @@ public class Test {
 
 其中ArrayBlockingQueue 是一个泛型，可以放入自定的类在里面进行测试。
 
-一个生产对应多个消费者可以进行一个测试。
+遗留的问题：
+
+- wait,notify可以模拟blockingQueue
+- 现在一个三个生产者，十个消费者的程序看看。
