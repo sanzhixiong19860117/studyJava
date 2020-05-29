@@ -12,7 +12,7 @@ public class SynDemo1 implements Runnable {
             }
             synchronized (this) {
                 if (ticker > 0) {
-                    System.out.println("还剩" + (ticker--) + "张");
+                    System.out.println(Thread.currentThread().getName()+"还剩" + (ticker--) + "张");
                 }
             }
         }
