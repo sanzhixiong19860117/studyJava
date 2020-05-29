@@ -345,3 +345,108 @@ public synchronized void get(){
 ```
 
 这样生产消费者就没有问题了。
+
+下面是用队列进行数据的添加和获取操作来测试
+
+生产者：
+
+```java
+package com.joy.production1;
+
+import java.util.concurrent.BlockingQueue;
+
+/**
+ * 生产者
+ */
+public class ProductionQueue implements Runnable {
+    private BlockingQueue blockingQueue;
+
+    public ProductionQueue(BlockingQueue blockingQueue) {
+        this.blockingQueue = blockingQueue;
+    }
+
+    public BlockingQueue getBlockingQueue() {
+        return blockingQueue;
+    }
+
+    public void setBlockingQueue(BlockingQueue blockingQueue) {
+        this.blockingQueue = blockingQueue;
+    }
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            try {
+                Thread.sleep(100);
+                this.blockingQueue.put(i);
+                System.out.println("生产者生产:" + i);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
+
+消费者
+
+```java
+package com.joy.production1;
+
+import java.util.concurrent.BlockingQueue;
+
+/**
+ * 消费者
+ */
+public class ConsumerQueue implements Runnable {
+
+    private BlockingQueue blockingQueue;
+
+    public ConsumerQueue(BlockingQueue blockingQueue) {
+        this.blockingQueue = blockingQueue;
+    }
+
+    public BlockingQueue getBlockingQueue() {
+        return blockingQueue;
+    }
+
+    public void setBlockingQueue(BlockingQueue blockingQueue) {
+        this.blockingQueue = blockingQueue;
+    }
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            try {
+                Thread.sleep(50);
+                System.out.println("消费者进行消费：" + blockingQueue.take());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
+
+测试类
+
+```java
+package com.joy.production1;
+
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+
+public class Test {
+    public static void main(String[] args) {
+        BlockingQueue blockingQueue = new ArrayBlockingQueue(5); //5是个数
+        ProductionQueue productionQueue = new ProductionQueue(blockingQueue);
+        ConsumerQueue consumerQueue = new ConsumerQueue(blockingQueue);
+        new Thread(productionQueue).start();
+        new Thread(consumerQueue).start();
+    }
+}
+```
+
+其中ArrayBlockingQueue 是一个泛型，可以放入自定的类在里面进行测试。
+
+一个生产对应多个消费者可以进行一个测试。
