@@ -53,3 +53,41 @@ public class Test1 implements Runnable {
 }
 ```
 
+## 线程同步的关键字：（其实本质就是加锁）synchronized(对象)
+
+买票的问题解决
+
+```java
+package com.joy.syn;
+public class SynDemo1 implements Runnable {
+    private int ticker = 5;
+    @Override
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            synchronized (this) {
+                if (ticker > 0) {
+                    System.out.println("还剩" + (ticker--) + "张");
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        SynDemo1 synDemo1 = new SynDemo1();
+        Thread thread = new Thread(synDemo1,"a");
+        Thread thread1 = new Thread(synDemo1,"b");
+        Thread thread2 = new Thread(synDemo1,"c");
+        Thread thread3 = new Thread(synDemo1,"d");
+        thread.start();
+        thread1.start();
+        thread2.start();
+        thread3.start();
+    }
+}
+```
+
