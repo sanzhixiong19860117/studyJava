@@ -26,7 +26,7 @@
 
 [线程的实现方式](https://github.com/sanzhixiong19860117/studyJava/tree/master/Thread/1)
 
-线程的生命周期，线程同步和死锁
+[线程的生命周期，线程同步和死锁](https://github.com/sanzhixiong19860117/studyJava/tree/master/Thread/2)
 
 生产消费者模型，线程池
 
