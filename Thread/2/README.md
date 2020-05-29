@@ -134,3 +134,148 @@ public class SynMedTest implements Runnable {
 }
 ```
 
+上面的解决的问题就数据安全问题。
+
+## 生产消费者模式
+
+设计思路就是生产者不停的生产产品，消费者不停的提取对应的产品。
+
+设计思路
+
+1. 先设计一个产品的类
+2. 在设计一个生产者的类，实现线程接口，然后不停的生产
+3. 消费者刚好相反
+
+第一个版本
+
+设计产品类
+
+```java
+package com.joy.production;
+
+/**
+ * 物品
+ */
+public class Goods {
+    private String name;
+    private String type;
+
+
+    public Goods() {
+    }
+
+    /**
+     * @param name 产品名字
+     * @param type 产品的类型
+     */
+    public Goods(String name, String type) {
+        this.name = name;
+        this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+}
+```
+
+2.设计一个消费者的类，它是实现线程的接口
+
+```java
+package com.joy.production;
+
+/**
+ * 生产者
+ */
+public class Production implements Runnable{
+    //共享的是一个对象
+    private Goods goods;
+
+    public Production(Goods goods) {
+        this.goods = goods;
+    }
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 10 ; i++) {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if(i%2 == 0){
+                this.goods.setName("哇哈哈");
+                this.goods.setType("矿泉水");
+            }
+            else{
+                this.goods.setName("空调");
+                this.goods.setType("格力");
+            }
+            System.out.println("生产了产品"+this.goods.getName()+"产品类型"+this.goods.getType());
+        }
+    }
+}
+```
+
+3.设计一个消费者的类，用来看消费者是否获得了生产的物品
+
+```java
+package com.joy.production;
+
+/**
+ * 消费者
+ */
+public class Consumer implements Runnable {
+    private Goods goods;
+
+    public Consumer(Goods goods) {
+        this.goods = goods;
+    }
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("消费者收到" + this.goods.getName() + "品牌" + this.goods.getType());
+        }
+    }
+}
+```
+
+4.写一个测试类
+
+```java
+package com.joy.production;
+
+public class Test {
+    public static void main(String[] args) {
+
+        Goods goods = new Goods();
+        //创建生产者
+        Production production = new Production(goods);
+        //消费者
+        Consumer consumer = new Consumer(goods);
+
+        Thread t1 = new Thread(production);
+        Thread t2 = new Thread(consumer);
+        t1.start();
+        t2.start();
+    }
+}
+```
