@@ -18,7 +18,7 @@ public class Consumer implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("消费者收到" + this.goods.getName() + "品牌" + this.goods.getType());
+            System.out.println("消费者收到：" + this.goods.getName() + "----品牌" + this.goods.getType());
         }
     }
 }

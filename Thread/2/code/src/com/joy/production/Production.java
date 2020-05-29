@@ -27,7 +27,7 @@ public class Production implements Runnable{
                 this.goods.setName("空调");
                 this.goods.setType("格力");
             }
-            System.out.println("生产了产品"+this.goods.getName()+"产品类型"+this.goods.getType());
+            System.out.println("生产了产品："+this.goods.getName()+"--"+"产品类型"+this.goods.getType());
         }
     }
 }
