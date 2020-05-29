@@ -17,7 +17,39 @@
 - 强制结束
 - 出现异常情况下出现死亡情况
 
-## api方法
+## 上机题：定义一个线程A，输入1-10，定一个一个线程B逆序输出1-10之间的整数，要求线程a和线程b交替执行
 
+```java
+package com.joy.home;
 
+public class Test1 implements Runnable {
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            System.out.println(Thread.currentThread().getName() + "==" + i);
+            try {
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Test1 test1 = new Test1();
+        Thread t = new Thread(test1);
+        t.start();
+
+        for (int i = 10; i > 0; i--) {
+            System.out.println(Thread.currentThread().getName() + "---" + i);
+            try {
+                Thread.sleep(1501);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
 
