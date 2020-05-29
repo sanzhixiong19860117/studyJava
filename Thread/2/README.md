@@ -279,3 +279,69 @@ public class Test {
     }
 }
 ```
+
+出现了一些不同步的情况，比如先消费了，后才有生产者，根据之前的经验，我是使用同步方法来看，在Goods设计两个同步方法
+
+```java
+//第一种方案使用同步方法
+public synchronized void set(String name,String type){
+    this.setName(name);
+    this.setType(type);
+    System.out.println("生产了产品："+this.getName()+"--"+"产品类型:"+this.getType());
+}
+
+public synchronized void get(){
+    System.out.println("消费者收到：" + this.getName() + "----品牌:" + this.getType());
+}
+```
+
+发现还是会出现不同步的问题，于是在加了一个标示位，通过标示为判断是否应该去生产，应该去消费了。
+
+核心如下
+
+Goods类增加一个标示
+
+```java
+//默认为falst 就是需要生产
+private boolean flog = false;
+```
+
+后面的方法需要修改一些细节
+
+```java
+//第一种方案使用同步方法
+public synchronized void set(String name,String type){
+    //判断是否应该生产
+    if(flog){
+        try {
+            wait();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    this.setName(name);
+    this.setType(type);
+    System.out.println("生产了产品："+this.getName()+"--"+"产品类型:"+this.getType());
+
+    //如果生产完毕需要重制相关的状态和数值
+    flog = true;
+    notify();//释放当当前wait()状态
+}
+
+public synchronized void get(){
+    if(!flog){
+        try {
+            wait();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    System.out.println("消费者收到：" + this.getName() + "----品牌:" + this.getType());
+    //重制对应信息
+    flog = false;
+    notify();//释放当当前所wait()状态
+}
+```
+
+这样生产消费者就没有问题了。

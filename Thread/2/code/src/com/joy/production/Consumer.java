@@ -12,13 +12,13 @@ public class Consumer implements Runnable {
 
     @Override
     public void run() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             try {
-                Thread.sleep(200);
+                Thread.sleep(220);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("消费者收到：" + this.goods.getName() + "----品牌" + this.goods.getType());
+            this.goods.get();//获得数据
         }
     }
 }
