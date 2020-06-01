@@ -400,3 +400,7 @@ public class ObjectStreamDemo {
 详细的请可以查看
 
 https://blog.csdn.net/dreamtdp/article/details/15378329
+
+## serializable接口
+
+它的作用只是为了标示这个类要被序列化。
