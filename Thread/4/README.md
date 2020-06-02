@@ -163,3 +163,21 @@ public class ScheduledThreadDemo {
 
 说明：线程池彻底的终止。
 
+## 线程池的参数
+
+```java
+//corePoolSize给指定线程的线程数
+//最大的线程容量
+//使用maximumPoolSize-corePoolSize>0的话，则需要创建新的线程
+//keepAliveTime 对应存活时间
+//TimeUnit 存活的时间单位
+//BlockingQueue 不需要等待和唤醒的操作了
+//
+//Executors.defaultThreadFactor 就是超过了线程以后的拒绝策略的操作
+hreadPoolExecutor(int corePoolSize,
+                              int maximumPoolSize,
+                              long keepAliveTime,
+                              TimeUnit unit,
+                              BlockingQueue<Runnable> workQueue) {
+```
+
