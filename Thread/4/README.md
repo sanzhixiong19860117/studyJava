@@ -51,5 +51,43 @@ public class Thread_pool {
 2. 线程中线程可以重复运用
 3. 当线程池中，没有可用线程，会重复创建新的线程。
 
+newFixedThreadPool 线程池
 
+```java
+package com.joy;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class FiexdThreadDemo {
+    public static void main(String[] args) {
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        for (int i = 0; i < 20 ; i++) {
+            executorService.execute(new Task());
+        }
+        executorService.shutdown();
+    }
+}
+```
+
+重用我们指定的线程的个数进行线程池的操作。
+
+newSingleThreadExecutor 创建一个线程池进行运行
+
+```java
+package com.joy;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class SingleThreadPool {
+    public static void main(String[] args) {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        for (int i = 0; i < 20; i++) {
+            executorService.execute(new Task());
+        }
+        executorService.shutdown();
+    }
+}
+```
 
