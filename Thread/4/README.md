@@ -181,3 +181,18 @@ hreadPoolExecutor(int corePoolSize,
                               BlockingQueue<Runnable> workQueue) {
 ```
 
+## 阻塞队列
+
+- ArrayBlockingQueue
+- LinkedBlockingQueue
+- DelayQueue
+- PriorityBlockingQueue
+- SynchronousQueue
+
+## 拒绝策略
+
+- ThreadPoolExecutor.AbortPolicy：丢弃任务并抛出错误
+- ThreadPoolExecutor.DiscardPolicy:丢弃但是不抛出异常
+- ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列在前面的任务，然后重新尝试执行
+- ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务
+
