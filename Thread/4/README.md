@@ -91,3 +91,50 @@ public class SingleThreadPool {
 }
 ```
 
+延迟执行的线程池
+
+ScheduledExecutorService 延迟操作
+
+```java
+package com.joy;
+
+import java.sql.Time;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+public class ScheduledThreadDemo {
+    public static void main(String[] args) {
+        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(3);
+        scheduledExecutorService.schedule(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("延迟三秒钟");
+            }
+        }, 3, TimeUnit.SECONDS);
+    }
+}
+```
+
+scheduleAtFixedRate 使用延迟线程中的这个方法，可以每一段时间执行一次
+
+```java
+package com.joy;
+
+import java.sql.Time;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+public class ScheduledThreadDemo {
+    public static void main(String[] args) {
+        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(3);
+        scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("延迟一秒钟执行，每个三秒执行一次");
+            }
+        }, 1,3, TimeUnit.SECONDS);
+    }
+}
+```
