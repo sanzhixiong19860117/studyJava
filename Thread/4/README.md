@@ -91,7 +91,7 @@ public class SingleThreadPool {
 }
 ```
 
-延迟执行的线程池
+## 延迟执行的线程池
 
 ScheduledExecutorService 延迟操作
 
@@ -138,3 +138,28 @@ public class ScheduledThreadDemo {
     }
 }
 ```
+
+## 线程池的生命周期
+
+线程池的生命周期有两个状态
+
+1.运行状态
+
+说明：线程可以接受到新的任务，可以及时添加任务处理。
+
+2.shutdown状态
+
+说明：就是线程在执行了shutdown以后，不接受新的任务，但是处理已经添加的任务。
+
+3.stop状态
+
+说明：不接受新任务，不处理已经添加的任务，并且会中断正在处理的任务（很黄很暴力）。
+
+4.Tidying状态
+
+说明：没有任何的任务都终止了，任务的队列也执行完了的时候，就会调用Terminated状态。
+
+5.Terminated状态
+
+说明：线程池彻底的终止。
+
