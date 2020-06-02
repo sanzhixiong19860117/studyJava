@@ -28,6 +28,6 @@
 
 [线程的生命周期，线程同步和死锁](https://github.com/sanzhixiong19860117/studyJava/tree/master/Thread/2)
 
-生产消费者模型，线程池
+[生产消费者模型，线程池](https://github.com/sanzhixiong19860117/studyJava/tree/master/Thread/4)
 
 ## 网络编程与jdk新特性
