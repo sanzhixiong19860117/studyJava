@@ -30,4 +30,6 @@
 
 [生产消费者模型，线程池](https://github.com/sanzhixiong19860117/studyJava/tree/master/Thread/4)
 
+[线程的总结](https://github.com/sanzhixiong19860117/studyJava/tree/master/Thread/3)
+
 ## 网络编程与jdk新特性
