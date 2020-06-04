@@ -122,4 +122,75 @@ public class Sever {
 
 先启动服务器
 
+第二步创建服务器也可以回话的消息
+
+```java
+package com.joy.net1;
+
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class Server {
+    public static void main(String[] args) throws IOException {
+        System.out.println("服务器已经启动");
+        //创建服务器的socket
+        ServerSocket serverSocket = new ServerSocket(10000);
+        //获得客户端的具柄
+        Socket socket = serverSocket.accept();
+        //接受数据
+        InputStream inputStream = socket.getInputStream();
+
+        //包装
+        DataInputStream dataInputStream = new DataInputStream(inputStream);
+        byte[] buf = new byte[1024];
+        int read = dataInputStream.read(buf);
+        System.out.println(new String(buf,0,read));
+        //发送数据
+        OutputStream outputStream = socket.getOutputStream();
+        DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+        dataOutputStream.write("你好客户端".getBytes());
+        //关闭
+        inputStream.close();
+        dataInputStream.close();
+        dataOutputStream.close();
+        outputStream.close();
+        socket.close();
+        serverSocket.close();
+    }
+}
+```
+
+客户端
+
+```java
+package com.joy.net1;
+import java.io.*;
+import java.net.Socket;
+
+public class Client {
+    public static void main(String[] args) throws IOException {
+        //客户端操作
+         Socket socket = new Socket("127.0.0.1",10000);
+         //发送数据
+        OutputStream outputStream = socket.getOutputStream();
+        DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+        //发送
+        dataOutputStream.write("你好服务器".getBytes());
+        //接受
+        InputStream inputStream = socket.getInputStream();
+        DataInputStream dataInputStream = new DataInputStream(inputStream);
+        byte[] buf = new byte[1024];
+        int read = dataInputStream.read();
+        System.out.println(new String(buf,0,read));
+        //关闭
+        outputStream.close();
+        dataInputStream.close();
+        dataOutputStream.close();
+        inputStream.close();
+        socket.close();
+    }
+}
+```
+
 ## UDP编程
